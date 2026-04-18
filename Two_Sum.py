@@ -29,4 +29,31 @@ Follow-up: Can you come up with an algorithm that is less than O(n^2) time compl
 """
 
 class Solution:
-    def twoSum(self, nums: List[int], target: int) -> List[int]:
+    def twoSum(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        # Create a dictionary to store the indices of the numbers
+        num_dict = {}
+        
+        # Iterate through the list of numbers
+        for i, num in enumerate(nums):
+            complement = target - num
+            # Check if the complement is in the dictionary
+            if complement in num_dict:
+                # If it is, return the indices of the two numbers
+                return [num_dict[complement], i]
+            # Otherwise, add the current number and its index to the dictionary
+            num_dict[num] = i
+        
+        # If no solution is found, return an empty list (though the problem guarantees one solution)
+        return []
+    
+# Example usage
+solution = Solution()
+
+print(solution.twoSum([2, 7, 11, 15], 9))
+print(solution.twoSum([3, 2, 4], 6))
+print(solution.twoSum([3, 3], 6))
