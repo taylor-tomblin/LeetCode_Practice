@@ -23,4 +23,17 @@ Constraints: -2^31 <= x <= 2^31 - 1
 """
 
 class Solution:
-    def isPalindrome(self, x: int) -> bool:
+    def isPalindrome(self, x):
+        """
+        :type x: int
+        :rtype: bool
+        """
+        if str(x).reverse() == str(x):
+            return True
+        else:
+            return False
+        
+ # Test Cases
+test_cases = [121, -121, 10]
+for x in test_cases:
+    print(Solution().isPalindrome(x))
