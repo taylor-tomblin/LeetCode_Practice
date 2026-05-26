@@ -28,12 +28,15 @@ class Solution:
         :type x: int
         :rtype: bool
         """
-        if str(x).reverse() == str(x):
-            return True
-        else:
+        # Negative numbers are not palindromes
+        if x < 0:
             return False
         
- # Test Cases
+        # Convert the number to a string and check if it reads the same forwards and backwards
+        str_x = str(x)
+        return str_x == str_x[::-1]
+        
+# Test Cases
 test_cases = [121, -121, 10]
 for x in test_cases:
     print(Solution().isPalindrome(x))
