@@ -8,5 +8,23 @@ Return true if the robot returns to the origin after it finishes all of its move
 Note: The way that the robot is "facing" is irrelevant. 'R' will always make the robot move to the right once, 'L' will always make it move left, etc. Also, assume that the magnitude of the robot's movement is the same for each move.
 """
 
-class Solution:
-    def judgeCircle(self, moves: str) -> bool:
+class Solution(object):
+    def judgeCircle(self, moves):
+        """
+        :type moves: str
+        :rtype: bool
+        """
+        x = 0
+        y = 0
+
+        for move in moves:
+            if move == 'R':
+                x += 1
+            elif move == 'L':
+                x -= 1
+            elif move == 'U':
+                y += 1
+            elif move == 'D':
+                y -= 1
+
+        return x == 0 and y == 0

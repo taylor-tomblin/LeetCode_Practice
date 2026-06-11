@@ -41,6 +41,7 @@ class Solution(object):
         :type n: int
         :rtype: int
         """
-        return abs(n - int(str(n)[::-1]))
-    
-# Test Cases
+        def reverse(num):
+            return int(str(num)[::-1])
+
+        return abs(n - reverse(n))

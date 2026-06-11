@@ -48,5 +48,33 @@ Constraints:
     - The input will be generated such that it is always possible to repair every robot.
 """
 
-class Solution:
-    def minimumTotalDistance(self, robot: List[int], factory: List[List[int]]) -> int:
+class Solution(object):
+    def minimumTotalDistance(self, robot, factory):
+        robot.sort()
+        factory.sort()
+
+        n = len(robot)
+        inf = 10**30
+        dp = [inf] * (n + 1)
+        dp[0] = 0
+
+        for position, limit in factory:
+            next_dp = dp[:]
+
+            for repaired in range(n):
+                if dp[repaired] == inf:
+                    continue
+
+                distance = 0
+                max_take = min(limit, n - repaired)
+
+                for take in range(1, max_take + 1):
+                    distance += abs(robot[repaired + take - 1] - position)
+                    next_dp[repaired + take] = min(
+                        next_dp[repaired + take],
+                        dp[repaired] + distance
+                    )
+
+            dp = next_dp
+
+        return dp[n]
